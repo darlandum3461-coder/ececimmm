@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Poyraz ♡ Ece</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0d0d1e, #483d8b);
+      color: #333;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { 
+        transform: translateY(-10vh) rotate(0deg); 
+        opacity: 0.8; 
+      }
+      100% { 
+        transform: translateY(110vh) rotate(720deg); 
+        opacity: 0.2; 
+      }
+    }
+
+    .countdown {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.8rem;
+      text-shadow: 0 5px 15px #4169e1;
+      text-align: center;
+    }
+
+    .countdown h3 {
+      font-size: 1.6rem;
+      color: #4169e1;
+      margin-bottom: 0.4rem;
+    }
+
+    .glitch-text {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #111127;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+      position: relative;
+      animation: glitchPulse 2s ease-in-out infinite;
+      margin-bottom: 1rem;
+      margin-top: 60px;
+    }
+
+    @keyframes glitchPulse {
+      0% { text-shadow: 0 0 10px #8a2be2, 2px 2px 0 #4169e1; }
+      50% { text-shadow: 0 0 15px #8a2be2, -2px -2px 0 #4169e1; }
+      100% { text-shadow: 0 0 10px #8a2be2, 2px 2px 0 #4169e1; }
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+      content: "POYRAZ <3 ECE";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .glitch-text::before {
+      color: #ff69b4;
+      z-index: -1;
+      animation: glitchBefore 1s infinite;
+    }
+
+    .glitch-text::after {
+      color: #a600ff;
+      z-index: -2;
+      animation: glitchAfter 1s infinite;
+    }
+
+    @keyframes glitchBefore {
+      0% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
+      50% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 2px); }
+      100% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
+    }
+
+    @keyframes glitchAfter {
+      0% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+      50% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, -2px); }
+      100% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+    }
+
+    .title2 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #1a1a3a;
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #8a2be2;
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      color: #4169e1;
+      margin-bottom: 2rem;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .button-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .music-btn, .love-btn, .video-btn, .gallery-btn, .note-btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 25px;
+      background: #111127;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .music-btn:hover, .love-btn:hover, .video-btn:hover, .gallery-btn:hover, .note-btn:hover {
+      background: #483d8b;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px #4169e1;
+    }
+
+    .music-icon, .love-icon, .video-icon, .gallery-icon, .note-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .music-btn:hover .music-icon, .love-btn:hover .love-icon, 
+    .video-btn:hover .video-icon, .gallery-btn:hover .gallery-icon, 
+    .note-btn:hover .note-icon {
+      transform: rotate(360deg);
+    }
+
+    .music-status {
+      font-size: 0.9rem;
+      color: #b0b0ff;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .music-status.show {
+      opacity: 1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      max-width: 80%;
+      max-height: 80vh;
+      border-radius: 10px;
+      border: 2px solid #483d8b;
+      animation: zoomIn 0.4s ease-out;
+    }
+
+    .video-modal-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 95%;
+      max-width: 350px;
+    }
+
+    .video-modal-container video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: black;
+      border-radius: 10px;
+      border: 2px solid #483d8b;
+    }
+
+    .video-nav, .gallery-nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .video-nav button, .gallery-nav button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background: #141428;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .video-nav button:hover, .gallery-nav button:hover {
+      background: #483d8b;
+    }
+
+    .note-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      background: #483d8b;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 2px solid #b0b0ff;
+      text-align: center;
+      animation: heartbeat 1.5s ease-in-out infinite;
+      max-width: 600px;
+    }
+
+    .note-text {
+      font-size: 1.5rem;
+      color: #b0b0ff;
+      font-weight: 500;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      20% { transform: scale(1.05); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.05); }
+      80% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    .gallery-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .gallery-image {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 10px;
+      border: 2px solid #483d8b;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2rem;
+      color: #ff69b4;
+      cursor: pointer;
+      background: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .close:hover {
+      background: #483d8b;
+      color: white;
+    }
+
+    .audio-player {
+      display: none;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .glitch-text { font-size: 2rem; margin-top: 50px; }
+      .title { font-size: 1.8rem; }
+      .message { font-size: 1.2rem; }
+      .music-btn, .love-btn, .video-btn, .gallery-btn, .note-btn { 
+        padding: 0.6rem 1.2rem; 
+        font-size: 0.9rem; 
+      }
+      .countdown { padding: 0.6rem; top: 3px; }
+      .countdown h3 { font-size: 1.5rem; }
+      .note-text { font-size: 1.2rem; }
+      .video-modal-container { max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <div class="container">
+    <div class="countdown">
+      <h3 class="title2">♡ 07.12.2025 ♡<br>YENİ YILIN KUTLU OLSUN BİTANEM</h3>
+    </div>
+    <div class="glitch-text">POYRAZ <3 ECE</div>
+    <h1 class="title">Kalbimin Kaybolan Parçası</h1>
+    <p class="message">Yeni yılda kalbinin parçasını verdiğin için teşekkür ederim balımm 💕</p>
+    <div class="button-container">
+      <button class="music-btn" id="musicToggle">
+        <span class="music-icon">🎵</span>
+        <span id="musicText">Çal</span>
+      </button>
+      <button class="love-btn" id="loveBtn">
+        <span class="love-icon">💖</span>
+        <span>FISTIKK</span>
+      </button>
+      <button class="video-btn" id="videoBtn">
+        <span class="video-icon">🎥</span>
+        <span>Video</span>
+      </button>
+      <button class="gallery-btn" id="galleryBtn">
+        <span class="gallery-icon">📸</span>
+        <span>Galeri</span>
+      </button>
+      <button class="note-btn" id="noteBtn">
+        <span class="note-icon">✉️</span>
+        <span>Not</span>
+      </button>
+    </div>
+    <div class="music-status" id="musicStatus"></div>
+    <audio id="backgroundMusic" class="audio-player" loop>
+      <source src="KAPATIYORUZ.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <footer>&copy; ECEM <3 </footer>
+
+  <div id="universalModal" class="modal">
+    <span class="close" id="universalClose">&times;</span>
+    <div id="modalContainer" style="width:100%; display:flex; justify-content:center; align-items:center;"></div>
+  </div>
+
+  <script>
+    // Kalpler
+    const hearts = document.getElementById('hearts');
+    const heartColors = ['#ff69b4', '#ff1493', '#ff6b9d', '#ff85a1', '#ffa0b8', '#c71585', '#db7093'];
+    const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💝'];
+    
+    for (let i = 0; i < 30; i++) { 
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 8 + Math.random() * 4 + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+      hearts.appendChild(heart);
+    }
+
+    // Müzik
+    const musicPlayer = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicText = document.getElementById('musicText');
+    const musicStatus = document.getElementById('musicStatus');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        musicPlayer.pause();
+        musicText.textContent = 'Çal';
+        musicStatus.textContent = 'Müzik durdu... 🌙';
+        musicStatus.classList.add('show');
+        setTimeout(() => musicStatus.classList.remove('show'), 2000);
+        isPlaying = false;
+      } else {
+        musicPlayer.play().then(() => {
+          musicText.textContent = 'Durdur';
+          musicStatus.textContent = 'Müzik çalıyor... 💖';
+          musicStatus.classList.add('show');
+          isPlaying = true;
+        }).catch(e => console.log("Müzik başlatılamadı"));
+      }
+    });
+
+    // MODAL YÖNETİMİ
+    const uniModal = document.getElementById('universalModal');
+    const uniContainer = document.getElementById('modalContainer');
+    const uniClose = document.getElementById('universalClose');
+
+    const closeModal = () => {
+      uniModal.style.display = 'none';
+      uniContainer.innerHTML = ''; 
+    };
+
+    uniClose.onclick = closeModal;
+    window.onclick = (e) => { if(e.target == uniModal) closeModal(); };
+
+    // FISTIKK BUTONU
+    const fistikImages = ["foto3.jpeg", "foto2.jpeg", "foto4.jpeg", "foto5.jpeg", "foto6.jpeg", "cennet.jpeg"];
+    let fistikIdx = 0;
+
+    document.getElementById('loveBtn').onclick = () => {
+      uniContainer.innerHTML = `
+        <div class="gallery-modal">
+          <img class="gallery-image" id="fImg" src="${fistikImages[fistikIdx]}">
+          <div class="gallery-nav">
+            <button id="pf">Önceki</button>
+            <button id="nf">Sonraki</button>
+          </div>
+        </div>`;
+      uniModal.style.display = 'flex';
+      
+      document.getElementById('pf').onclick = () => { 
+        fistikIdx = (fistikIdx - 1 + fistikImages.length) % fistikImages.length; 
+        document.getElementById('fImg').src = fistikImages[fistikIdx]; 
+      };
+      document.getElementById('nf').onclick = () => { 
+        fistikIdx = (fistikIdx + 1) % fistikImages.length; 
+        document.getElementById('fImg').src = fistikImages[fistikIdx]; 
+      };
+    };
+
+    // VİDEO BUTONU
+    const videos = ["tatlıslar1.mp4", "tatlıslar2.mp4"];
+    let videoIdx = 0;
+
+    document.getElementById('videoBtn').onclick = () => {
+      uniContainer.innerHTML = `
+        <div class="video-modal-container">
+          <video id="mVideo" controls><source src="${videos[videoIdx]}" type="video/mp4"></video>
+          <div class="video-nav">
+            <button id="pv">Önceki</button>
+            <button id="nv">Sonraki</button>
+          </div>
+        </div>`;
+      uniModal.style.display = 'flex';
+      const v = document.getElementById('mVideo');
+      document.getElementById('pv').onclick = () => { videoIdx = (videoIdx-1+videos.length)%videos.length; v.src = videos[videoIdx]; v.play(); };
+      document.getElementById('nv').onclick = () => { videoIdx = (videoIdx+1)%videos.length; v.src = videos[videoIdx]; v.play(); };
+    };
+
+    // GALERİ BUTONU - Düzeltilmiş Alan
+    const gImages = ["tatlıs1.jpeg", "tatlıs2.jpeg", "tatlıs3.jpeg", "tatlıs4.jpeg", "tatlıs5.jpeg", "tatlıs6.jpeg", "tatlıs7.jpeg", "tatlıs8.jpeg", "tatlıs9.jpeg", "tatlıs10.jpeg", "tatlıs11.jpeg", "tatlıs12.jpeg", "tatlıs13.jpeg"];
+    let gIdx = 0;
+
+    document.getElementById('galleryBtn').onclick = () => {
+      uniContainer.innerHTML = `
+        <div class="gallery-modal">
+          <img class="gallery-image" id="gImg" src="${gImages[gIdx]}">
+          <div class="gallery-nav">
+            <button id="pg">Önceki</button>
+            <button id="ng">Sonraki</button>
+          </div>
+        </div>`;
+      uniModal.style.display = 'flex';
+      document.getElementById('pg').onclick = () => { gIdx = (gIdx-1+gImages.length)%gImages.length; document.getElementById('gImg').src = gImages[gIdx]; };
+      document.getElementById('ng').onclick = () => { gIdx = (gIdx+1)%gImages.length; document.getElementById('gImg').src = gImages[gIdx]; };
+    };
+
+    // NOT BUTONU
+    const msgs = ["2025 Yılı benim için nekadar soğuk da geçse içimi ısıtacak olan kişi senin olman beni mükemmel yapıyor bu yıl rastladıgım ve tanıdığım en iyi kişisin... YENİ YILIN KUTLU OLSUN BİTANEMMM  🍯", "Gözümü alacak geleceğimi parlatacak kadar güzelsin fıstığımmm💎", "Yeni yılımızda kavgaların az olduğu bir yıl dilerim... YENİ YILIN KUTLU OLSUN GÜZELİMMMM 🤍", "İlk baharımda sensin son baharımda sen olacaksın Bitanemm <3 💓"];
+
+    document.getElementById('noteBtn').onclick = () => {
+      uniContainer.innerHTML = `<div class="note-modal"><p class="note-text">${msgs[Math.floor(Math.random()*msgs.length)]}</p></div>`;
+      uniModal.style.display = 'flex';
+    };
+  </script>
+</body>
+</html>
