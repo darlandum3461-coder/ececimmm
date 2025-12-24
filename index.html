@@ -362,6 +362,70 @@
       .countdown h3 { font-size: 1.5rem; }
       .note-text { font-size: 1.2rem; }
       .video-modal-container { max-width: 280px; }
+      /* Mevcut CSS'inin en altına veya Media Query kısmına bunu yapıştır */
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-y: auto; /* Yazılar sığmazsa aşağı kaydırılabilsin */
+    align-items: flex-start; /* Mobilde en üstten başlasın, sıkışmasın */
+    padding-top: 20px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .countdown {
+    position: relative; /* Sabit konum yerine akışa dahil ettik */
+    top: 0;
+    transform: none;
+    left: 0;
+    margin-bottom: 10px;
+  }
+
+  .countdown h3 {
+    font-size: 1.1rem; /* Tarih ve kutlama yazısını küçülttük */
+    line-height: 1.4;
+  }
+
+  .glitch-text {
+    font-size: 1.8rem; /* İsimlerin boyutunu küçülttük */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Uzun isim varsa alt satıra geçer */
+  }
+
+  .title {
+    font-size: 1.4rem; /* "Kalbimin Kaybolan Parçası" yazısı */
+    margin-bottom: 0.8rem;
+  }
+
+  .message {
+    font-size: 1rem; /* Alt mesaj boyutu */
+    margin-bottom: 1.5rem;
+    padding: 0 10px;
+  }
+
+  .button-container {
+    gap: 0.6rem; /* Butonlar arası boşluğu daralttık */
+  }
+
+  .music-btn, .love-btn, .video-btn, .gallery-btn, .note-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    flex: 1 1 40%; /* Butonların yan yana veya alt alta düzgün dizilmesi için */
+    justify-content: center;
+  }
+
+  .modal-content {
+    max-width: 90%;
+  }
+  
+  .note-text {
+    font-size: 1.1rem;
+  }
+}
     }
   </style>
 </head>
@@ -398,7 +462,7 @@
     </div>
     <div class="music-status" id="musicStatus"></div>
     <audio id="backgroundMusic" class="audio-player" loop>
-      <source src="KAPATIYORUZ.MP3" type="audio/mpeg">
+      <source src="KAPATIYORUZ.mp3" type="audio/mpeg">
     </audio>
   </div>
   <footer>&copy; ECEM <3 </footer>
@@ -534,6 +598,4 @@
     };
   </script>
 </body>
-
 </html>
-
